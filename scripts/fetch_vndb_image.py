@@ -2,8 +2,14 @@ import os
 import json
 import requests
 from datetime import datetime
+from dotenv import load_dotenv
 
-API_KEY = "fzio-ythmp-wcyrz-zy3y-b7e1p-apzds-bbaa"  
+# Import .env
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+
+os.chdir(os.path.dirname(__file__))
+
 
 headers = {
     "Content-Type": "application/json",
@@ -31,7 +37,7 @@ def get_vn_img(vn_id):
                 return title, img_url
     return None
 
-def get_latest_data(folder="../info"):
+def get_latest_data(folder="..\\info"):
     files = [f for f in os.listdir(folder) if f.startswith("finished_vns_") and f.endswith(".txt")]
     if not files:
         print("No files found.")
@@ -46,7 +52,7 @@ def extract_vns_ids(file_path):
                 vn_ids.append(line.strip().split(": ")[1])
     return vn_ids 
 
-def save_img(img_url, vn_id, output_folder="../info/img"):
+def save_img(img_url, vn_id, output_folder="..\\info\\img"):
     os.makedirs(output_folder, exist_ok=True)
     response = requests.get(img_url)
     if response.status_code == 200:

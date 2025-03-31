@@ -1,9 +1,13 @@
 import requests
 from datetime import datetime
 import os 
+from dotenv import load_dotenv
 
-API_KEY = "fzio-ythmp-wcyrz-zy3y-b7e1p-apzds-bbaa"
+# Import .env
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 
+os.chdir(os.path.dirname(__file__))
 
 headers = {
     "Content-Type": "application/json",
@@ -27,7 +31,7 @@ response = requests.post("https://api.vndb.org/kana/ulist", headers=headers, jso
 if response.status_code == 200:
     data = response.json()
 
-    output_folder = "../info"
+    output_folder = "..\\info"
     os.makedirs(output_folder, exist_ok= True)
     
     current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")

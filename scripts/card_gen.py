@@ -1,8 +1,15 @@
 import os
 from mako.template import Template
+from dotenv import load_dotenv
 
-info_folder = "../info"
+# Import .env
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+IMG_DIR = "..\\info\\img\\"
+
+info_folder = "..\\info"
 image_folder = os.path.join(info_folder, "img")
+os.chdir(os.path.dirname(__file__))
 
 #finding latest file
 txt_files = [f for f in os.listdir(info_folder) if f.endswith('.txt')]
@@ -16,7 +23,7 @@ latest_file_path = os.path.join(info_folder, latest_file)
 print(f"Processed {latest_file}")
 
 #html read and data set
-with open("../static/index.html", "r", encoding="utf-8") as f:
+with open("..\\static\\index.html", "r", encoding="utf-8") as f:
     template_content = f.read()
 
 template = Template(template_content)
@@ -42,7 +49,7 @@ with open(latest_file_path, "r", encoding="utf-8") as file:
             image_file = image_files.get(vn_id)
 
             if image_file:
-                vn_data['image'] = f"images/{image_file}"
+                vn_data['image'] = f"{IMG_DIR}{image_file}"
                 visual_novels.append(vn_data)
             else:
                 print(f"No image found for ID: {vn_id}")
@@ -54,8 +61,9 @@ print("Final visual novels list:", visual_novels)
 #html work
 html_output = template.render(visual_novels=visual_novels)
 
-output_path = "../output/card.html"
-with open(output_path, "w", encoding="utf-8") as f:
+output_path = "..\\output\\card.html"
+os.makedirs("..\\output")
+with open(output_path, "w+", encoding="utf-8") as f:
     f.write(html_output)
         
 
