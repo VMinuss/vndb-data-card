@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Novel Cards</title>
+    <!-- Link the CSS file here -->
+    <link rel="stylesheet" type="text/css" href="styles.css"> <!-- This links the CSS file -->
+</head>
+<body>
+    <div class="cards-container">
+        <!-- Loop through your visual novels here, each will be a .card -->
+        % for vn in visual_novels:
+        <div class="card">
+            <img src="${vn['image']}" alt="Visual Novel Image">
+            <div class="title">${vn['title']}</div>
+            <div class="vote">Votes: ${vn['vote']}</div>
+        </div>
+        % endfor
+    </div>
+</body>
+</html>
+
+
