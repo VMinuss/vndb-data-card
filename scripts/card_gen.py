@@ -26,6 +26,8 @@ print(f"Processed {latest_file}")
 with open("..\\static\\index.html", "r", encoding="utf-8") as f:
     template_content = f.read()
 
+template_content = template_content.replace('href="styles.css"', 'href="../static/styles.css"')
+
 template = Template(template_content)
 
 visual_novels = []
@@ -49,7 +51,7 @@ with open(latest_file_path, "r", encoding="utf-8") as file:
             image_file = image_files.get(vn_id)
 
             if image_file:
-                vn_data['image'] = f"{IMG_DIR}{image_file}"
+                vn_data['image'] = f"{IMG_DIR.replace('\\', '/')}{image_file}"
                 visual_novels.append(vn_data)
             else:
                 print(f"No image found for ID: {vn_id}")
@@ -62,8 +64,12 @@ print("Final visual novels list:", visual_novels)
 html_output = template.render(visual_novels=visual_novels)
 
 output_path = "..\\output\\card.html"
-os.makedirs("..\\output")
-with open(output_path, "w+", encoding="utf-8") as f:
+os.makedirs("..\\output", exist_ok=True)
+
+if os.path.exists(output_path):
+    os.remove(output_path)
+
+with open(output_path, "w", encoding="utf-8") as f:
     f.write(html_output)
         
 
