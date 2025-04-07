@@ -52,6 +52,19 @@ def extract_vns_ids(file_path):
                 vn_ids.append(line.strip().split(": ")[1])
     return vn_ids 
 
+def delete_old(vn_ids, img_folder="..\\info\\img"):
+    current_img = [f for f in os.listdir(img_folder) if f.endswith(".jpg")]
+    valid_file = {f"{vn_id}.jpg" for vn_id in vn_ids}
+
+    for image in current_img: 
+        if image not in valid_file:
+            try:
+                os.remove(os.path.join(img_folder, image))
+                print(f"Deleted oldie : {image}")
+            except Exception as e:
+                print(f"Failed deletion {image}: {e}")  
+
+
 def save_img(img_url, vn_id, output_folder="..\\info\\img"):
     os.makedirs(output_folder, exist_ok=True)
     response = requests.get(img_url)
@@ -68,6 +81,8 @@ def fetch_vn_images():
         return 
     
     vn_ids = extract_vns_ids(data_file)
+    delete_old(vn_ids)
+    
     for vn_id in vn_ids:
         result = get_vn_img(vn_id)
         if result:
