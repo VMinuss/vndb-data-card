@@ -1,58 +1,79 @@
-/* General styles for the entire page */
+/* ===========================
+   Base Layout / Page Styles
+=========================== */
 body {
-    font-family: 'Poppins', sans-serif; /* Using Poppins for a sleek, modern look */
-    background-color: orangered;
-    margin: 0;
-    padding: 0;
-    color: orange; /* Set default text color to orange */
+  margin: 0;
+  padding: 2rem;
+  background-color: #12121c; /* Total page background */
+  font-family: 'CiutadellaRounded', sans-serif;
+  display: flex;
+  justify-content: center;
 }
 
-/* Container for the cards */
+/* ===========================
+   Card Container Styling
+=========================== */
 .cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: left;
-    gap: 20px;
-    padding: 20px;
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping onto the next line */
+  gap: 2rem;        /* Space between cards */
+  justify-content: center;
+  max-width: 1200px;
 }
 
-/* Styling for each individual visual novel card */
+/* ===========================
+   Individual Card Styling
+=========================== */
 .card {
-    background-color: black; /* Black background for each card */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 250px;
-    padding: 15px;
-    text-align: center;
-    overflow: hidden;
-    color: orange; /* Set text color to orange for the entire card */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1e1e2f; /* Card background */
+  color: #f0f0f0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 300px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
 }
 
-/* Title styling */
-.card .title {
-    font-family: 'Poppins', sans-serif; /* Bold and sleek font */
-    font-size: 18px;
-    font-weight: 600; /* Make it bolder */
-    color: orange;
-    margin-bottom: 10px;
+.card:hover {
+  transform: scale(1.03);
 }
 
-/* Image styling */
+/* ===========================
+   Image Styling
+=========================== */
 .card img {
-    width: 100%;  /* Makes the image fill the width of the card */
-    height: 200px; /* Sets a fixed height for uniformity */
-    object-fit: cover; /* Ensures the image covers the space without stretching */
-    border-radius: 8px;
-    margin-bottom: 10px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 1rem;
 }
 
-/* Vote count styling */
-.card .vote {
-    font-family: 'Poppins', sans-serif; /* Match the font */
-    font-size: 14px;
-    font-weight: 600; /* Make it bolder */
-    color: orange;
+/* ===========================
+   Text Styling
+=========================== */
+.title {
+  font-family: 'CiutadellaRounded';
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
-/* Adding Google Fonts for Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+.vote {
+  font-family: 'CiutadellaRounded';
+  font-size: 1rem;
+  opacity: 0.7;
+  text-align: center;
+}
+
+/* ===========================
+   Font Face Declaration
+=========================== */
+@font-face {
+  font-family: 'CiutadellaRounded';
+  src: url(fonts/CiutadellaRoundedTRIAL-SmBd-BF6736b92239d28.otf);
+}
