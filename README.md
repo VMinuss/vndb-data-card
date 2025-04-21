@@ -1,13 +1,15 @@
 Visual Novel Card Generator
+
 This project generates visual novel cards with details such as titles, images, and votes, sourced from VNDB (Visual Novel Database). It uses a combination of Python scripts and HTML/CSS to create and display visually appealing cards based on the information retrieved.
 
-Features
-Fetches data from VNDB using Python.
+Features:
 
-Generates image cards for each visual novel.
+i) Fetches data from VNDB using Python.
 
-Displays details such as title, image, and votes for each visual novel.
+ii) Generates image cards for each visual novel.
 
-Customizable layout and design using HTML and CSS.
+iii) Displays details such as title, image, and votes for each visual novel.
 
-Ability to view the cards in a structured format.
+iv) Customizable layout and design using HTML and CSS.
+
+v) Ability to view the cards in a structured format.
