@@ -1,4 +1,5 @@
 import subprocess
+import sys
 import os 
 
 #allocation
@@ -9,7 +10,7 @@ card_gen_script = os.path.join("..\\scripts\\card_gen.py")
 def run_script(script):
     """Runs the script and waits for it to complete"""
     try:
-        subprocess.run(["python", script], check=True)
+        subprocess.run([sys.executable, script], check=True)
         print(f"{script} ran successfully")
     except subprocess.CalledProcessError as e:
         print(f"Error running {script}: {e}")   
